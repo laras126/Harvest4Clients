@@ -86,12 +86,13 @@ require_once 'inc/login.inc.php';
     <?php
     $hoursRounded = 0;
 
-    $data = getData($domain.'people/292217/entries?from=' . $startdate . '&to=' . $enddate . '&billable=yes');
-    $data = simplexml_load_string($data);
-    foreach ($data as $entry)
+    //get billable time per project
+    foreach($myProjects as $projectId => $projectName)
     {
-        if (array_key_exists((int)$entry->{'project-id'}, $myProjects)) {
-
+        $data = getData($domain.'projects/' . $projectId . '/entries?from=' . $startdate . '&to=' . $enddate . '&billable=yes');
+        $data = simplexml_load_string($data);
+        foreach ($data as $entry)
+        {
             if(isset($_POST['project']) && !empty($_POST['project']) && $_POST['project'] != (int)$entry->{'project-id'})
             {
                 continue;
@@ -128,18 +129,19 @@ require_once 'inc/login.inc.php';
     <?php
     $hoursRounded = 0;
 
-    $data = getData($domain.'people/292217/entries?from=' . $startdate . '&to=' . $enddate . '&billable=no');
-    $data = simplexml_load_string($data);
-    foreach ($data as $entry)
+    //get unbillable time per project
+    foreach($myProjects as $projectId => $projectName)
     {
-        if (array_key_exists((int)$entry->{'project-id'}, $myProjects)) {
+        if(isset($_POST['project']) && !empty($_POST['project']) && $_POST['project'] != $projectId)
+        {
+            continue;
+        }
+        $data = getData($domain.'projects/' . $projectId . '/entries?from=' . $startdate . '&to=' . $enddate . '&billable=no');
+        $data = simplexml_load_string($data);
 
-            if(isset($_POST['project']) && !empty($_POST['project']) && $_POST['project'] != (int)$entry->{'project-id'})
-            {
-                continue;
-            }
+        foreach ($data as $entry)
+        {
             $hoursRounded += ceil((float)$entry->{'hours'} * 60 / 15) * 0.25;
-
             echo '<tr>
                     <td>' . $entry->{'spent-at'} . '</td>
                     <td>' . $myProjects[(int)$entry->{'project-id'}] . '</td>
