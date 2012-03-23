@@ -9,5 +9,5 @@ $credentials = "example@example.com:mypass";
 //options array = password, client id, language
 $clients = array(
     'user1' => array('password' => 'pwofuser', 'client' => 123456, 'language' => 'en'),
-    'user2' => array('password' => 'mypassword', 'client' => 987654, 'language' => 'nl')
+    'user2' => array('password' => 'mypassword', 'client' => 987654, 'projects'=>array(456789), 'language' => 'nl')
 );

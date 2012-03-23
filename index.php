@@ -45,7 +45,11 @@ require_once 'inc/login.inc.php';
             $projects = getData($domain.'projects?client='.$clients[$user]['client']);
             $projects = simplexml_load_string($projects);
             $myProjects = array();
-            foreach ($projects as $project) {
+            foreach ($projects as $project)
+            {
+            	if (is_array($clients[$user]['projects']) && !in_array((int)$project->{'id'}, $clients[$user]['projects']))
+            		continue;
+            	
                 $myProjects[(int)$project->{'id'}] = (string)$project->{'name'};
             }
             unset($projects, $project);
