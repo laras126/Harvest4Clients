@@ -1,13 +1,12 @@
 <?php
 //Your Harvest domain
-$domain = 'https://yourdomain.harvestapp.com/';
+$domain = 'https://notlaura.harvestapp.com/';
 
 //email:password of your Harvest account
-$credentials = "example@example.com:mypass";
+$credentials = "lara@notlaura.com:gilman924";
 
 //key = username
 //options array = password, client id, language
 $clients = array(
-    'user1' => array('password' => 'pwofuser', 'client' => 123456, 'language' => 'en'),
-    'user2' => array('password' => 'mypassword', 'client' => 987654, 'projects'=>array(456789), 'language' => 'nl')
+    'user1' => array('password' => 'pass', 'client' => 2082224, 'language' => 'en')
 );
