@@ -15,13 +15,16 @@ require_once 'login.inc.php';
 <body>
 <div class="container">
 
-<?php include 'inc/menu.inc.php';?>
-
     <header class="page-header">
         <h1><?php
             $clientData = getData($domain.'clients/'.$clients[$user]['client']);
             $clientData = simplexml_load_string($clientData);
             echo $clientData->name . '<br />' .nl2br($clientData->details);
         ?></h1>        
-    </header>
 
+    </header>
+	
+	<div class="form-group">
+		<?php include 'inc/menu.inc.php';?>
+	</div>
+	
