@@ -17,15 +17,19 @@ require_once 'lang/en.php'; //default language
 
 		    <header class="page-header">
 		        <h1>Login</h1>
+		        <p class="lead">Please login to view details on your project.</p>
 		    </header>
 
-			<form method="post" action="index.php" class="input-group">
-			    <label><?php echo __('login.user'); ?></label><input class="form-control" type="text" name="user">
-			    <br>
-			    <label><?php echo __('login.password'); ?></label><input class="form-control" type="password" name="password">
-			    <br>
-			    <input type="submit" class="btn btn-default btn-md" value="<?php echo __('login'); ?>">
-			    
+			<form method="post" action="index.php" class="col-md-3">
+				<div class="form-group">
+			    	<label><?php echo __('login.user'); ?></label><input class="form-control" type="text" name="user">
+			    </div>
+			    <div class="form-group">
+			    	<label><?php echo __('login.password'); ?></label><input class="form-control" type="password" name="password">
+			    </div>
+			    <div class="form-group">
+			    	<input type="submit" class="btn btn-default btn-md" value="<?php echo __('login'); ?>">	
+			    </div>
 			</form>
 		</div>
 	</body>

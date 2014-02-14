@@ -3,6 +3,34 @@
     $startdate = isset($_POST['startdate']) ? $_POST['startdate'] : firstOfMonth();
     $enddate = isset($_POST['enddate']) ? $_POST['enddate'] : lastOfMonth();
 ?>
+    
+    <div class="form-group">
+        <strong><?php echo __('timetracking.showproject'); ?>:</strong>
+        <select name="project">
+            <option value=""><?php echo __('timetracking.showproject.all'); ?></option>
+            <?php
+            $projects = getData($domain.'projects?client='.$clients[$user]['client']);
+            $projects = simplexml_load_string($projects);
+            $myProjects = array();
+            foreach ($projects as $project)
+            {
+            if (is_array($clients[$user]['projects']) && !in_array((int)$project->{'id'}, $clients[$user]['projects']))
+                continue;
+            
+            $myProjects[(int)$project->{'id'}] = (string)$project->{'name'};
+        }
+        unset($projects, $project);
+
+        foreach($myProjects as $projectId => $projectName)
+        {
+            echo '<option value="'.$projectId.'"'.(isset($_POST['project']) && $_POST['project'] == $projectId ? ' selected="selected"' : '').'>'.htmlentities($projectName).'</option>';
+        }
+
+        ?>
+        </select>
+        <input type="submit" class="btn btn-default btn-sm" value="<?php echo __('submit'); ?>">
+    </div>
+
     <form method="post" action="" class="clearfix">
         <input type="hidden" id="startfield" name="startdate" value="<?php echo htmlentities($startdate); ?>">
         <input type="hidden" id="endfield" name="enddate" value="<?php echo htmlentities($enddate); ?>">
@@ -15,37 +43,10 @@
             <strong><?php echo __('timetracking.enddate'); ?>:</strong>
             <div id="enddate">&nbsp;</div>
         </div>
-        <div class="datepicker">
-            <strong><?php echo __('timetracking.showproject'); ?>:</strong><br />
-            <select name="project">
-                <option value=""><?php echo __('timetracking.showproject.all'); ?></option>
-                <?php
-                $projects = getData($domain.'projects?client='.$clients[$user]['client']);
-                $projects = simplexml_load_string($projects);
-                $myProjects = array();
-                foreach ($projects as $project)
-                {
-                if (is_array($clients[$user]['projects']) && !in_array((int)$project->{'id'}, $clients[$user]['projects']))
-                    continue;
-                
-                $myProjects[(int)$project->{'id'}] = (string)$project->{'name'};
-            }
-            unset($projects, $project);
-
-            foreach($myProjects as $projectId => $projectName)
-            {
-                echo '<option value="'.$projectId.'"'.(isset($_POST['project']) && $_POST['project'] == $projectId ? ' selected="selected"' : '').'>'.htmlentities($projectName).'</option>';
-            }
-
-            ?>
-            </select><br />
-            <input type="submit" class="btn btn-default btn-sm" value="<?php echo __('submit'); ?>">
-        </div>
     </form>
 
     <hr />
 
-    
     <div class="panel panel-default">
 
         <div class="panel-heading">
