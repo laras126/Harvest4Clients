@@ -38,10 +38,10 @@
             }
 
             ?>
-        </select><br />
-        <input type="submit" class="btn btn-default btn-sm" value="<?php echo __('submit'); ?>">
-    </div>
-</form>
+            </select><br />
+            <input type="submit" class="btn btn-default btn-sm" value="<?php echo __('submit'); ?>">
+        </div>
+    </form>
 
     <hr />
 
@@ -101,6 +101,7 @@
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo __('timetracking.unbillable'); ?></h3>
         </div>
+        
         <table class="table">
             <tr>
                 <th><?php echo __('timetracking.date'); ?></th>
@@ -108,10 +109,11 @@
                 <th><?php echo __('timetracking.hours'); ?></th>
                 <th><?php echo __('timetracking.notes'); ?></th>
             </tr>
+
             <?php
             $hoursRounded = 0;
 
-            //get unbillable time per project
+            // get unbillable time per project
             foreach($myProjects as $projectId => $projectName)
             {
                 if(isset($_POST['project']) && !empty($_POST['project']) && $_POST['project'] != $projectId)
