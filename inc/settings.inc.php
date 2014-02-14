@@ -8,5 +8,5 @@ $credentials = "lara@notlaura.com:gilman924";
 //key = username
 //options array = password, client id, language
 $clients = array(
-    'user1' => array('password' => 'pass', 'client' => 2082224, 'language' => 'en')
+    'amomeni' => array('password' => 'pass', 'client' => 1969769, 'language' => 'en')
 );

@@ -1,33 +1,10 @@
-<?php
-session_start();
-require_once 'inc/settings.inc.php';
-require_once 'inc/functions.inc.php';
-require_once 'inc/login.inc.php';
-?>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
-    <title><?php echo __('invoices'); ?></title>
-    <link type="text/css" href="css/style.css" rel="stylesheet"/>
-    <link type="text/css" href="css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet"/>
-    <script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
-    <script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
-    <script type="text/javascript" src="js/datepickers.js"></script>
-</head>
-<body>
-<div id="container">
-    <?php
-    $user = $_SESSION['user'];
-
-    include 'inc/menu.inc.php';
-    ?>
-    <a href="http://www.kenters.com" id="logo"><img src="http://www.kenters.com/images/logo.png"
-                                                        alt="Jeroen Kenters Web Development" width="147"
-                                                        height="50"/></a>
-
-    <h1><?php echo __('invoices.last50'); ?></h1>
-    <table>
+<?php require_once 'inc/header.inc.php'; ?>
+<?php $user = $_SESSION['user']; ?>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo __('invoices.last50'); ?></h3>
+    </div>
+    <table class="table">
         <tr>
             <th><?php echo __('invoices.number'); ?></th>
             <th><?php echo __('invoices.date'); ?></th>
@@ -59,5 +36,5 @@ require_once 'inc/login.inc.php';
         ?>
     </table>
 </div>
-</body>
-</html>
+
+<?php require_once 'inc/footer.inc.php'; ?>

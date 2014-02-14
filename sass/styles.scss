@@ -1,3 +1,10 @@
 // customize bootstrap variables here:
 @import "variables";
 @import "bootstrap";
+@import "extensions";
+
+
+.datepicker {
+    float: left;
+    margin-right: 30px;
+}
